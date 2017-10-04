@@ -1,0 +1,26 @@
+.board {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: crimson;
+}
+.board h1 {
+    text-align: center;
+}
+/* COLUMN */
+.column {
+    margin: 0;
+    width: 300px;
+    background-color: azure;
+    border-radius: 10px;
+    float: left;
+}
+/* CARD */
+.card {
+    background-color: darkred;
+    list-style: none;
+    border-radius: 10px;
+}
+.card-description {
+    color: white;
+    text-align: center;
+}

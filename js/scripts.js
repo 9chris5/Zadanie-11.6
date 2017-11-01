@@ -8,7 +8,7 @@ $(function() {
         return str;
     }
     function Column(name) {
-        var self = this; // useful for nested functions
+        var self = this;
 
         this.id = randomString();
         this.name = name;
@@ -43,21 +43,28 @@ $(function() {
     };
     function Card(description) {
         var self = this;
-
+        if (description == "") {
+            this.description = "New card";
+        }
+        else {
+            this.description = description;
+        };
         this.id = randomString();
-        this.description = description;
-        this.$element = createCard(); //
-
+        this.$element = createCard();
+        
         function createCard() {
             var $card = $('<li>').addClass('card');
             var $cardDescription = $('<p>').addClass('card-description').text(self.description);
             var $cardDelete = $('<button>').addClass('btn-delete').text('x');
-            $cardDelete.click(function(){
-                self.removeCard();
-            });
-            $card.append($cardDelete)
-            .append($cardDescription);
-            return $card;
+            if (self.description != null) {
+                $cardDelete.click(function(){
+                    self.removeCard();
+                });
+                $card.append($cardDelete)
+                .append($cardDescription);
+                return $card;
+            }
+            console.log(self.description);
         }
     }
     Card.prototype = {
@@ -79,11 +86,15 @@ $(function() {
            placeholder: 'card-placeholder'
        }).disableSelection();
     }
-    $('.create-column')
-    .click(function(){
+    $('.create-column').click(function(){
         var name = prompt('Enter a column name');
-        var column = new Column(name);
-        board.addColumn(column);
+        if (name != null) {
+            if (name = " ") {
+                name = "New column";
+            }
+            var column = new Column(name);
+            board.addColumn(column);
+        }
     });
     var todoColumn = new Column('To do');
     var doingColumn = new Column('Doing');
@@ -98,4 +109,4 @@ $(function() {
 
     todoColumn.addCard(card1);
     doingColumn.addCard(card2);
-})
+});

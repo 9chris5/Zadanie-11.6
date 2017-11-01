@@ -6,6 +6,9 @@
 .board h1 {
     text-align: center;
 }
+ul {
+    min-height: 50px;
+}
 /* COLUMN */
 .column {
     margin: 0;
